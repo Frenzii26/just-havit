@@ -1,0 +1,334 @@
+/*!
+Theme Name: Versatile Blog
+Theme URI: http://creativthemes.com/downloads/versatile-blog/
+Author: Creativ Themes
+Author URI: http://creativthemes.com/
+Description: Versatile Blog is a light and elegant theme that suits all kinds of blog. It can be used for fashion blog, food blog, travel blog, personal blog, magazine blog websites.
+Version: 1.0
+Requires at least: 5.1
+Requires PHP: 5.6
+Tested up to: 6.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Template: elastic-blog
+Text Domain: versatile-blog
+Tags: translation-ready, custom-background, theme-options, custom-menu, threaded-comments, featured-images, footer-widgets, left-sidebar, editor-style, right-sidebar, full-width-template, two-columns, three-columns, custom-colors, custom-header, custom-logo
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+Versatile Blog is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
+*/
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+body {
+    font-family: 'Lora', serif;
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+/*--------------------------------------------------------------
+# Colors
+--------------------------------------------------------------*/
+.logged-in-as a:hover,
+.logged-in-as a:focus,
+a,
+.site-title a:hover,
+.site-title a:focus,
+.main-navigation ul.nav-menu > li:hover > a,
+.main-navigation ul.nav-menu > li.focus > a,
+.main-navigation ul.nav-menu .current_page_item > a,
+.main-navigation ul.nav-menu .current-menu-item > a,
+.main-navigation ul.nav-menu .current_page_ancestor > a,
+.main-navigation ul.nav-menu .current-menu-ancestor > a,
+.post-navigation a:hover, 
+.posts-navigation a:hover,
+.post-navigation a:focus, 
+.posts-navigation a:focus,
+.pagination .page-numbers,
+.pagination .page-numbers.dots:hover,
+.pagination .page-numbers.dots:focus,
+.pagination .page-numbers.prev,
+.pagination .page-numbers.next,
+#secondary a:hover,
+#secondary a:focus,
+.page-header small,
+.post-categories a,
+.cat-links:before,
+.entry-meta a:hover,
+.entry-meta a:focus,
+.comment-meta .url:hover,
+.comment-meta .url:focus,
+.comment-metadata a:hover,
+.comment-metadata a:focus,
+.comment-metadata a:hover time,
+.comment-metadata a:focus time,
+.entry-title a:hover,
+.entry-title a:focus,
+#colophon a:hover,
+#colophon a:focus,
+.blog-posts-wrapper .post-item .date a {
+    color: #E27B60;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover,
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active,
+.menu-toggle:hover,
+.menu-toggle:focus,
+.pagination .page-numbers.current,
+.pagination .page-numbers:hover,
+.pagination .page-numbers:focus,
+.wp-block-search__button:hover,
+.wp-block-search__button:focus,
+.tags-links a,
+.reply a:hover,
+.reply a:focus,
+.btn,
+.wp-block-tag-cloud a,
+#colophon .widget_search form.search-form button.search-submit,
+.blog-posts-wrapper .post-item .cat-links a,
+.wp-block-search__button {
+    background-color: #E27B60;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover,
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active,
+.widget_search form.search-form input[type="search"]:focus,
+.wp-block-search__button:hover,
+.wp-block-search__button:focus,
+.tags-links a,
+.reply a:hover,
+.reply a:focus,
+.btn,
+.wp-block-search__button {
+    border-color: #E27B60;
+}
+
+#loader svg {
+    fill: #E27B60;
+}
+
+#secondary ul li a:hover,
+#secondary ul li a:focus {
+    border-bottom-color: #E27B60;
+}
+
+@media screen and (min-width: 1024px) {
+    .main-navigation ul.nav-menu .current_page_item > a, 
+    .main-navigation ul.nav-menu .current-menu-item > a, 
+    .main-navigation ul.nav-menu .current_page_ancestor > a, 
+    .main-navigation ul.nav-menu .current-menu-ancestor > a,
+    .main-navigation ul.nav-menu > li:hover > a, 
+    .main-navigation ul.nav-menu > li.focus > a {
+        color: #E27B60;
+    }
+    .main-navigation ul ul li:hover > a,
+    .main-navigation ul ul li.focus > a {
+        background-color: #E27B60;
+        color: #fff;
+    }
+}
+
+/*--------------------------------------------------------------
+# Latest Posts List Layout
+--------------------------------------------------------------*/
+.blog-posts-wrapper .list-layout article {
+    width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+    .blog-posts-wrapper .list-layout .has-post-thumbnail .post-item {
+        position: relative;
+        display: table;
+        width: 100%;
+        padding: 0;
+    }
+    .blog-posts-wrapper .list-layout .has-post-thumbnail .post-item .featured-image {
+        display: table-cell;
+        width: 50%;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+    }
+    .blog-posts-wrapper .list-layout .has-post-thumbnail .post-item .entry-container {
+        display: table-cell;
+        width: 50%;
+        float: right;
+        text-align: left;
+        padding: 50px 30px;
+    }
+    .blog-posts-wrapper .list-layout .entry-title {
+        font-size: 24px;
+    }
+}
+
+/*--------------------------------------------------------------
+# Highlighted Posts Section
+--------------------------------------------------------------*/
+#section-highlighted-posts {
+    margin-bottom: 50px;
+}
+#section-highlighted-posts .grid {
+    margin: -5px;
+}
+#section-highlighted-posts article {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 0;
+}
+#section-highlighted-posts .highlighted-posts-image {
+    background-color: #cccccc;
+    position: relative;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+    z-index: 1;
+}
+#section-highlighted-posts .highlighted-posts-image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#section-highlighted-posts .highlighted-posts-image {
+    -webkit-align-items: flex-end;
+    -moz-align-items: flex-end;
+    -ms-align-items: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+}
+#section-highlighted-posts .highlighted-posts-image {
+    height: 240px;
+}
+#section-highlighted-posts .highlighted-posts-image:before {
+    background-color: rgba(0, 0, 0, 0.5);
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    position: absolute;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    z-index: 1;
+}
+#section-highlighted-posts .highlighted-posts-content {
+    padding: 0 20px 20px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
+#section-highlighted-posts .cat-links {
+    display: inline-block;
+}
+#section-highlighted-posts .cat-links a {
+    background-color: #E27B60;
+    color: #FFFFFF;
+    letter-spacing: 0.8px;
+    line-height: 1;
+    padding: 2px 6px;
+    margin: 2px;
+    text-transform: uppercase;
+    font-size: 12px;
+    transition: all 0.4s ease-out 0s;
+}
+#section-highlighted-posts .cat-links a:hover,
+#section-highlighted-posts .cat-links a:focus {
+    background-color: #000;
+    color: #FFF;
+}
+#section-highlighted-posts .highlighted-posts-title {
+    font-size: 18px;
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+#section-highlighted-posts .highlighted-posts-title a {
+    text-decoration: none;
+    color: #FFFFFF;
+    transition: all 0.4s ease-out 0s;
+}
+#section-highlighted-posts .highlighted-posts-title a:hover,
+#section-highlighted-posts .highlighted-posts-title a:focus {
+    color: #E27B60;
+}
+#section-highlighted-posts .entry-meta a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.4s ease-out 0s;
+}
+#section-highlighted-posts .entry-meta a:hover,
+#section-highlighted-posts .entry-meta a:focus {
+    color: #E27B60;
+}
+
+@media screen and (min-width: 567px) {
+    #section-highlighted-posts article {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    #section-highlighted-posts article {
+        width: 25%;
+    }
+    #section-highlighted-posts article:nth-child(3) {
+        width: 50%;
+    }
+    #section-highlighted-posts article:nth-child(3) .highlighted-posts-image {
+        height: 490px;
+    }
+    #section-highlighted-posts article:nth-child(3) .highlighted-posts-title {
+        font-size: 32px;
+    }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body style="box-sizing: border-box; font-family: 'Roboto', sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <div class="container" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; max-width: 600px; width: 100%;">
+    <div class="content" style="margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; padding: 20px; background-color: #f9f9f9; border-radius: 10px;">
+      <div class="wrapper" style="margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; height: 450px; background: #fff; position: relative; padding: 30px 40px;">
+        <div class="border-design top" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; display: flex; width: 100%; justify-content: flex-end; position: absolute; top: 0; right: 0;">
+          <div class="c1" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; background: rgb(165, 4, 4); width: 30px; height: 10px;"></div>
+        </div>
+
+        <div class="order-header" style="padding: 0; margin: 0; box-sizing: border-box; display: grid; grid-template-columns: repeat(2, 1fr);">
+          <div class="logo" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; text-transform: uppercase; font-size: 16px; font-weight: 700; letter-spacing: -1px;"><img class="img-fluid" src="https://www.justhavit.com.ng/assets/img/havit.png" alt="" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; max-width: 50%; height: 50px;"></div>
+          <div class="title" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; text-transform: uppercase; font-size: 25px; font-weight: 600; text-align: right;">Order Confirmation</div>
+          <div class="ord-number" style="margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; display: flex; justify-content: space-between; flex-direction: column; padding: 10px 45px 0 0;">
+            <h3 style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 12px; margin-bottom: 5px;">Invoice # </h3>
+            <h4 style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 500; font-size: 12px; margin-bottom: 5px; text-transform: uppercase;">{{ orderId }}</h4>
+          </div>
+          <div class="ord-date" style="margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; display: flex; justify-content: space-between; padding: 10px 0 0 45px;">
+            <h3 style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 12px; margin-bottom: 5px;">Date</h3>
+            <h4 style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 500; font-size: 12px; margin-bottom: 5px;">{{ orderDate }}</h4>
+          </div>
+        </div>
+
+        <div class="billing-detail" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; margin-top: 15px; text-align: left;">
+          <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; text-transform: uppercase; font-size: 10px;">Billing to</p>
+          <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; text-transform: uppercase; font-size: 12px; font-weight: 700; width: 150px; border-bottom: 1px solid #000; margin-bottom: 5px;">{{ name }}</p>
+          <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: 10px;"><span style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 600;">Contact:</span> {{ phone }}</p>
+          <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: 10px;"><span style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 600;">Email:</span> {{ email }}</p>
+          <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: 10px;"><span style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 600;">Address:</span> {{ address }}</p>
+        </div>
+
+        <table style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; border-collapse: collapse; font-size: 12px; width: 100%; margin-top: 20px;" width="100%">
+          <thead style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;">
+            <tr style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;">
+              <td style="margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; text-align: center; font-weight: 600; padding: 8px 5px;" align="center">No.</td>
+              <td style="margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; text-align: center; font-weight: 600; padding: 8px 5px;" align="center">Item Description</td>
+              <td style="margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; text-align: center; font-weight: 600; padding: 8px 5px;" align="center">Qty</td>
+              <td style="margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; text-align: center; font-weight: 600; padding: 8px 5px;" align="center">Price</td>
+              <td style="margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; text-align: center; font-weight: 600; padding: 8px 5px;" align="center">Amount</td>
+            </tr>
+          </thead>
+          <tbody style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;">
+
+            {{ products }}
+
+          </tbody>
+        </table>
+
+        <div class="total-section" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; position: absolute; right: 40px; font-size: 12px; width: 160px; margin-top: 5px; padding-right: 5px;">
+          <div class="sub" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; display: flex; justify-content: space-between; margin-top: 5px;">
+            <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 600;">Sub Total</p>
+            <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;">₦{{ subTotal }}</p>
+          </div>
+          <div class="tax" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; display: flex; justify-content: space-between; margin-top: 5px;">
+            <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 600;">Tax :</p>
+            <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;">₦{{ tax }}</p>
+          </div>
+          <div class="total" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; display: flex; justify-content: space-between; margin-top: 5px; border-top: 1px solid #646464; padding-top: 5px;">
+            <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 600;">Grand Total:</p>
+            <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-weight: 600;">₦{{ total }}</p>
+          </div>
+        </div>
+
+        <div class="payment-terms" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; position: absolute; bottom: 30px; width: 45%;">
+          <div class="message" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;">
+            <p style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 700;">Thank's for shopping with us</p>
+          </div>
+        </div>
+        <div class="button" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;">
+          <a href="https://www.justhavit.com.ng/shop" target="_blank" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif;">
+            <button class="button1" style="box-sizing: border-box; font-family: 'Roboto', sans-serif; font-size: 12px; background-color: rgb(165, 4, 4); color: #fcfcfc; padding: 5px; margin: 10px; border-radius: 5px; cursor: pointer; float: left;">Buy Again</button>
+          </a>
+        </div>
+
+        <div class="border-design bottom" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; display: flex; width: 100%; justify-content: flex-end; position: absolute; bottom: 0; left: 0; flex-direction: row-reverse;">
+          <div class="c1" style="padding: 0; margin: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; background: rgb(165, 4, 4); width: 30px; height: 10px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

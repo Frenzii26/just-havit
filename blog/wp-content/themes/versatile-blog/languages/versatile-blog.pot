@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-29 13:02+0545\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: functions.php:35
+msgctxt "Josefin Sans: on or off"
+msgid "on"
+msgstr ""
+
+#: functions.php:39
+msgctxt "Lora font: on or off"
+msgid "on"
+msgstr ""
+
+#: inc/child-functions.php:45
+#, php-format
+msgid " Theme Versatile Blog by %s"
+msgstr ""
+
+#: inc/customizer/highlighted-posts-options.php:5
+msgid "Highlighted Posts Section"
+msgstr ""
+
+#: inc/customizer/highlighted-posts-options.php:22
+msgid "Enable Highlighted Posts"
+msgstr ""
+
+#: inc/customizer/highlighted-posts-options.php:41
+msgid "Number of Items (Max: 15)"
+msgstr ""
+
+#: inc/customizer/highlighted-posts-options.php:66
+msgid "Select Categories"
+msgstr ""
