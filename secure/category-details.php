@@ -89,12 +89,15 @@
                                     </div>
                                         <form action="../assets/config/category_process" method="post" enctype="multipart/form-data">
                                             <div class="modal-body">
-                                                <label>New Category Name</label>
+                                                <label style="color: rgb(22, 22, 22);">New Category Name</label>
                                                 <input type="text" name="name" class="form-control w-100 mb-3 rounded-0">
 
-                                                <label>New Category Image</label>
+                                                <label style="color: rgb(22, 22, 22);">New Category Image</label>
                                                 <input type="file" name="file" class="form-control w-100 mb-3 rounded-0">
                                                 <input type="hidden" name="id" value="<?php echo $row['cat_id']; ?>">
+
+                                                <label style="color: rgb(22, 22, 22);">New Alt Text</label>
+                                                <input type="text" name="alt_text" class="form-control w-100 mb-3 rounded-0">
                                             </div>
                                             <div class="modal-footer">
                                                 <button  type="submit" name="updateCat" class="btn btn-primary">Update Category</button>

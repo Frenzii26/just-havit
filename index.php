@@ -153,10 +153,19 @@ require_once('./vendor/autoload.php');
       $sql = "SELECT * FROM categories ORDER BY _id DESC";
       $query = mysqli_query($connectDB, $sql);
       while ($row = mysqli_fetch_assoc($query)) {
+        // Fetch alt text from the database based on product ID
+        $altText = ""; // Initialize alt text variable
+        $categoryId = $row['cat_id']; // Assuming you have the product ID available
+        $sqlAltText = "SELECT alt_text FROM categories WHERE cat_id = '$categoryId'";
+        $queryAltText = mysqli_query($connectDB, $sqlAltText);
+        if ($queryAltText && mysqli_num_rows($queryAltText) > 0) {
+            $rowAltText = mysqli_fetch_assoc($queryAltText);
+            $altText = $rowAltText['alt_text'];
+        }
       ?>
         <div class="col-lg-4 col-md-6 col-12" id="catIndex">
           <div class="position-relative" id="catIndex2">
-            <img alt="Havit NG Category Image" class="img-fluid h-100" src="assets/img/category/<?php echo $row['category_image'] ?>" alt="">
+            <img alt="<?php echo htmlspecialchars($altText); ?>" class="img-fluid h-100" src="assets/img/category/<?php echo $row['category_image'] ?>">
             <div class="position-absolute w-100 text-center top-50 p-2" style="background-color: rgba(0,0,0,.3);">
               <h2 class="text-white"><?php echo ucwords($row['category_name']); ?></h2>
               <a href="shop?q=<?php echo $row['cat_id']; ?>"><button class="text-uppercase text-white">Shop Now</button></a>
@@ -213,9 +222,18 @@ require_once('./vendor/autoload.php');
       $sql = "SELECT * FROM tbl_products ORDER BY _id DESC LIMIT 0,50";
       $query = mysqli_query($connectDB, $sql);
       while ($row = mysqli_fetch_assoc($query)) {
+        // Fetch alt text from the database based on product ID
+        $altText = ""; // Initialize alt text variable
+        $productId = $row['product_id']; // Assuming you have the product ID available
+        $sqlAltText = "SELECT alt_text FROM product_image WHERE product_id = '$productId'";
+        $queryAltText = mysqli_query($connectDB, $sqlAltText);
+        if ($queryAltText && mysqli_num_rows($queryAltText) > 0) {
+            $rowAltText = mysqli_fetch_assoc($queryAltText);
+            $altText = $rowAltText['alt_text'];
+        }
       ?>
         <div class="product text-center col-lg-3 col-md-6 col-6">
-          <img alt="Havit NG Product Image" style="border-radius: 20px;" onclick="window.location.href='sproduct?q=<?php echo $row['product_id']; ?>';" class="img-fluid mb-3" src="assets/img/products/<?php echo getName($connectDB, "product_image", "product_image", "product_id", $row['product_id']); ?>" alt="">
+          <img alt="<?php echo htmlspecialchars($altText); ?>" style="border-radius: 20px;" onclick="window.location.href='sproduct?q=<?php echo $row['product_id']; ?>';" class="img-fluid mb-3" src="assets/img/products/<?php echo getName($connectDB, "product_image", "product_image", "product_id", $row['product_id']); ?>" alt="">
 
           <h5 class="p-name"><?php echo substr(ucwords($row['product_name']), 0, 100) . ''; ?></h5>
          <div class="d-flex justify-content-around">

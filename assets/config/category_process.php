@@ -10,6 +10,7 @@
         $title = strtolower($_POST['name']);
         $file = $_FILES['file'];
         $date = date("Y-m-d h:i:s a");
+        $alt_text = $_POST['alt_text']; // Get alt text from form
 
          // Get all the values from the file associative array
          $fileName = $file['name'];
@@ -35,13 +36,13 @@
                      $move = move_uploaded_file($fileTempLoc,$location.$fileNewName);
                      if ($move) {
 
-                        $sql = "INSERT INTO categories(cat_id,category_name,category_image,date_created) VALUES(?,?,?,?)";
+                        $sql = "INSERT INTO categories(cat_id,category_name,category_image,date_created, alt_text) VALUES(?,?,?,?,?)";
                             // Initialize Database Connection
                             $stmt = mysqli_stmt_init($connectDB);
                             // Prepare SQL statement
                             mysqli_stmt_prepare($stmt,$sql);
                             // Bind parameters to the placeholder
-                            mysqli_stmt_bind_param($stmt,"ssss",$cid,$title,$fileNewName,$date);
+                            mysqli_stmt_bind_param($stmt,"sssss",$cid,$title,$fileNewName,$date,$alt_text);
                             // Execute statement
                         if (mysqli_stmt_execute($stmt)) {
                             $_SESSION['successmessage'] =  "Category added successfully";
@@ -72,6 +73,7 @@
        $title = $_POST['name'];
        $title = addslashes($title);
        $file = $_FILES['file'];
+       $alt_text = $_POST['alt_text']; // Get alt text from form
        
        if (!empty($title)) {
           $sql = "UPDATE categories SET category_name='$title' WHERE cat_id = '$id'";
@@ -96,7 +98,7 @@
          $fileActualExt = strtolower(end($fileExt));
  
          // Files that would be allowed
-         $allowed = array('jpg','png','jpeg','tiff','swf','jpeg2000');
+         $allowed = array('jpg','png','jpeg','tiff','swf','jpeg2000', 'webp');
  
          // Check if the file extension is allowed
          if (in_array($fileActualExt,$allowed)) {
@@ -156,9 +158,17 @@
                  header("Location: ../../secure/category-details?q=$id");
              }
          }else{
-             $_SESSION['errormessage'] =  "Please upload a file that is either jpg,png or jpeg";
+             $_SESSION['errormessage'] =  "Please upload a file that is either jpg, png, jpeg or webp";
              header("Location: ../../secure/category-details?q=$id");
          }
+        }
+        // Update alt text in the database
+        $sqlUpdateAltText = "UPDATE categories SET alt_text='$alt_text' WHERE cat_id = '$id'";
+        $queryUpdateAltText = mysqli_query($connectDB, $sqlUpdateAltText);
+        if (!$queryUpdateAltText) {
+            $_SESSION['errormessage'] =  "Failed to update alt text";
+            header("Location: ../../secure/category-details?q=$id");
+            exit(); // Add exit to stop execution if an error occurs
         }
     }
 

@@ -81,7 +81,7 @@ $urow = mysqli_fetch_assoc($query);
                         <a href="category-details?q=<?php echo $row['cat_id']; ?>" id="catDiv">
                             <div class="card position-relative">
                                 <div class="overlay position-absolute w-100 h-100" id="overlay"></div>
-                                <img src="../assets/img/category/<?php
+                                <img alt="Havit Category Image" src="../assets/img/category/<?php
                                                                     $img = $row['category_image'];
                                                                     echo "$img?" . mt_rand();
                                                                     ?>" alt="category" id="catImg" class="img-fluid">
@@ -114,7 +114,7 @@ $urow = mysqli_fetch_assoc($query);
                 ?>
                     <div class="col-md-6 col-lg-4 mb-2">
                         <a href="product-details?q=<?php echo $row['product_id']; ?>" class="d-block product text-center">
-                            <img class="img-fluid mb-3" src="../assets/img/products/<?php echo getName($connectDB, "product_image", "product_image", "product_id", $row['product_id']); ?>" alt="">
+                            <img alt="Havit Product Image" class="img-fluid mb-3" src="../assets/img/products/<?php echo getName($connectDB, "product_image", "product_image", "product_id", $row['product_id']); ?>" alt="">
                             <div class="star">
                                 <i class="fas fa-star"></i>
                             </div>

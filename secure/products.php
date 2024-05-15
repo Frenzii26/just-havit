@@ -6,7 +6,6 @@ $curId = $_SESSION['id'];
 $sql = "SELECT * FROM users WHERE _id = '$curId'";
 $query = mysqli_query($connectDB, $sql);
 $urow = mysqli_fetch_assoc($query);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,18 +111,13 @@ $urow = mysqli_fetch_assoc($query);
 
                                     <label>Stock</label>
                                     <input type="number" name="stock" class="form-control w-100 mb-3 rounded-0">
-                                    
-                                    <!-- Title Tag Field -->
-                                        <label for="title_tag">Title Tag</label>
-                                        <input type="text" class="form-control w-100 mb-3 rounded-0" id="title_tag" name="title_tag" value="<?php echo htmlspecialchars($titleTag); ?>">
-                                        
-                                    <!-- Meta Description Field -->
-                                        <label for="meta_description" class="form-label">Meta Description</label>
-                                        <textarea class="form-control w-100" id="meta_description" name="meta_description" rows="3"><?php echo htmlspecialchars($metaDescription); ?></textarea>
 
                                     <label>weight</label>
                                     <input type="number" name="weight" class="form-control w-100 mb-3 rounded-0">
-    
+
+                                    <label>Short Description</label>
+                                    <textarea name="short_description" class="form-control w-100 mb-3 rounded-0"></textarea>
+
                                     <label>Details</label>
                                     <textarea name="details" class="form-control w-100" style="height: 150px;"></textarea>
                                 </div>
@@ -148,7 +142,7 @@ $urow = mysqli_fetch_assoc($query);
                             <a href="products?q=<?php echo $row['cat_id']; ?>" id="catDiv">
                                 <div class="card position-relative">
                                     <div class="overlay position-absolute w-100 h-100" id="overlay"></div>
-                                    <img src="../assets/img/category/<?php
+                                    <img alt="Havit Category Image" src="../assets/img/category/<?php
                                                                         $img = $row['category_image'];
                                                                         echo "$img?" . mt_rand();
                                                                         ?>" alt="category" id="catImg" class="img-fluid">
@@ -170,7 +164,7 @@ $urow = mysqli_fetch_assoc($query);
                     ?>
                         <div class="col-md-6 col-lg-4 mb-2">
                             <a href="product-details?q=<?php echo $row['product_id'] ?>" class="product text-center">
-                                <img class="img-fluid d-block mx-auto mb-3" src="../assets/img/products/<?php echo getName($connectDB, "product_image", "product_image", "product_id", $row['product_id']) ?>" alt="">
+                                <img alt="Havit Product Image" class="img-fluid d-block mx-auto mb-3" src="../assets/img/products/<?php echo getName($connectDB, "product_image", "product_image", "product_id", $row['product_id']) ?>" alt="">
                                 <div class="text-center">
                                     <p class="text-capitalize row">
                                         <span class="fw-bold col-5 text-end">Category: </span>
@@ -211,7 +205,7 @@ $urow = mysqli_fetch_assoc($query);
                 ?>
                 <div class="col-md-6 col-lg-4 mb-2">
                     <a href="product-details?q=<?php echo $row['product_id']; ?>" class="d-block product text-center">
-                        <img  class="img-fluid mb-3" src="../assets/img/products/<?php echo getName($connectDB,"product_image","product_image","product_id",$row['product_id']); ?>" alt="">
+                        <img alt="Havit Product Image"  class="img-fluid mb-3" src="../assets/img/products/<?php echo getName($connectDB,"product_image","product_image","product_id",$row['product_id']); ?>" alt="">
                         <div class="star">
                             <i class="fas fa-star"></i>
                         </div>

@@ -85,6 +85,9 @@
 
                             <label>Category Name</label>
                             <input type="file" name="file" class="form-control w-100 mb-3 rounded-0">
+                            
+                            <label style="color: rgb(22, 22, 22);">Alt Text</label>
+                            <input type="text" name="alt_text" class="form-control w-100 mb-3 rounded-0">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" name="newCat" class="btn btn-primary">Add Category</button>
@@ -101,15 +104,24 @@
                     $sql = "SELECT * FROM categories ORDER BY _id DESC LIMIT 0, 20";
                     $query = mysqli_query($connectDB,$sql);
                     while($row = mysqli_fetch_assoc($query)){
+                        // Fetch alt text from the database based on product ID
+                    $altText = ""; // Initialize alt text variable
+                    $categoryId = $row['cat_id']; // Assuming you have the product ID available
+                    $sqlAltText = "SELECT alt_text FROM categories WHERE cat_id = '$categoryId'";
+                    $queryAltText = mysqli_query($connectDB, $sqlAltText);
+                    if ($queryAltText && mysqli_num_rows($queryAltText) > 0) {
+                        $rowAltText = mysqli_fetch_assoc($queryAltText);
+                        $altText = $rowAltText['alt_text'];
+                    }
                 ?>
                 <div class="col-md-6  col-lg-4 mb-2">
                    <a href="category-details?q=<?php echo $row['cat_id']; ?>" id="catDiv">
                     <div class="card position-relative">
                         <div class="overlay position-absolute w-100 h-100" id="overlay"></div>
-                        <img src="../assets/img/category/<?php 
+                        <img alt="<?php echo htmlspecialchars($altText); ?>" src="../assets/img/category/<?php 
                             $img = $row['category_image'];
                             echo "$img?".mt_rand();
-                        ?>" alt="category" id="catImg" class="img-fluid">
+                        ?>" alt="<?php echo htmlspecialchars($altText); ?>" id="catImg" class="img-fluid">
                         <div class="position-absolute w-100 text-center top-50 p-2" style="background-color: rgba(0,0,0,.3);">
                         <h3 class="fw-bold text-center text-white w-100 top-50">
                             <?php echo $row['category_name']; ?>

@@ -23,6 +23,21 @@ if (!isset($_GET['q'])) {
   header("Location: shop");
 }
 ?>
+
+<?php
+  $pid = $_GET['q'];
+  $sql = "SELECT * FROM tbl_products WHERE product_id = '$pid'";
+  $query = mysqli_query($connectDB, $sql);
+  $row = mysqli_fetch_assoc($query);
+
+  $sqlImage = "SELECT * FROM product_image WHERE product_id = '$pid'";
+  $query = mysqli_query($connectDB, $sqlImage);
+  $rowImage = mysqli_fetch_assoc($query);
+
+  $catid = $row['cat_id'];
+  $subid = $row['sub_id'];
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,8 +45,8 @@ if (!isset($_GET['q'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php echo $titleTag; ?></title>
-  <meta name="description" content="<?php echo $metaDescription; ?>">
+  <title><?php echo ucwords($row['product_name']); ?> | Havit Nigeria</title>
+  <meta name="description" content="<?php echo ucwords($row['short_description']); ?>">
   <link rel="icon" href="../assets/img/havit.png">
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9464789650939584"
@@ -49,20 +64,6 @@ if (!isset($_GET['q'])) {
   <!-- Icon Font Stylesheet -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <?php
-  $pid = $_GET['q'];
-  $sql = "SELECT * FROM tbl_products WHERE product_id = '$pid'";
-  $query = mysqli_query($connectDB, $sql);
-  $row = mysqli_fetch_assoc($query);
-
-  $sqlImage = "SELECT * FROM product_image WHERE product_id = '$pid'";
-  $query = mysqli_query($connectDB, $sqlImage);
-  $rowImage = mysqli_fetch_assoc($query);
-
-  $catid = $row['cat_id'];
-  $subid = $row['sub_id'];
-  ?>
 
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="<?php echo ucwords($row['product_name']); ?>">
@@ -282,8 +283,16 @@ if (!isset($_GET['q'])) {
            <?php if (intval($row['stock']) > 0) { ?>
             <button type="submit" name="addToCart" class="buy-btn">Add To Cart</button>
           <?php } ?>
-        </form>
-        <h4 class="mt-5 mb-5">Product Details</h4>
+        </form> <br>
+        <!-- Short description -->
+        <p><?php echo $row['short_description']; ?></p>
+
+      </div>
+    </div>
+    <?php
+    echo "<hr class='custom-hr'>";
+    ?>
+    <h2 class="mt-5 mb-5">Product Description</h2>
         <article class="text-transform-0">
   <?php 
   // Explode the product description into an array of sentences
@@ -306,9 +315,6 @@ if (!isset($_GET['q'])) {
   echo "</ul>";
   ?>
 </article>
-
-      </div>
-    </div>
     <br><br>
     <!-- ShareThis BEGIN -->
     <div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->

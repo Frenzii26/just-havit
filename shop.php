@@ -243,9 +243,18 @@ require "assets/includes/sessions.php";
               </div>";
           }
           while ($row = mysqli_fetch_assoc($query)) {
+            // Fetch alt text from the database based on product ID
+        $altText = ""; // Initialize alt text variable
+        $productId = $row['product_id']; // Assuming you have the product ID available
+        $sqlAltText = "SELECT alt_text FROM product_image WHERE product_id = '$productId'";
+        $queryAltText = mysqli_query($connectDB, $sqlAltText);
+        if ($queryAltText && mysqli_num_rows($queryAltText) > 0) {
+            $rowAltText = mysqli_fetch_assoc($queryAltText);
+            $altText = $rowAltText['alt_text'];
+        }
           ?>
             <div onclick="window.location.href='sproduct?q=<?php echo $row['product_id']; ?>';" class="product text-center col-lg-3 col-md-6 col-12">
-              <img alt="Havit Product Image" class="img-fluid mb-3" src="assets/img/products/<?php echo getName($connectDB, "product_image", "product_image", "product_id", $row['product_id']); ?>" alt="">
+              <img alt="<?php echo htmlspecialchars($altText); ?>" class="img-fluid mb-3" src="assets/img/products/<?php echo getName($connectDB, "product_image", "product_image", "product_id", $row['product_id']); ?>" alt="">
               <!--
                       <div class="star">
                         <i class="fas fa-star"></i>

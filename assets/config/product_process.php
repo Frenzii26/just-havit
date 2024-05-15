@@ -2,6 +2,7 @@
 include_once 'db_con.php';
 include "../includes/sessions.php";
 
+
 if (isset($_POST['newProduct'])) {
     $pid = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     $pid = str_shuffle($pid);
@@ -13,6 +14,8 @@ if (isset($_POST['newProduct'])) {
     $stock = $_POST['stock'];
     $weight = $_POST['weight'];
     $details = $_POST['details'];
+    // Retrieve short description from form
+    $shortDescription = mysqli_real_escape_string($connectDB, $_POST['short_description']);
     // Function to truncate the product details to a maximum number of characters
     function truncateDetails($details, $maxCharacters) {
         if (strlen($details) > $maxCharacters) {
@@ -25,20 +28,20 @@ if (isset($_POST['newProduct'])) {
 
     // When inserting or updating a new product
     $details = $_POST['details'];
-    $maxCharacters = 200000000000000; // Define the maximum number of characters to display
+    $maxCharacters = 20000000000000000; // Define the maximum number of characters to display
     $truncatedDetails = truncateDetails($details, $maxCharacters);
     
     // Now you can use the $truncatedDetails variable in your SQL query for insertion or update
 
 
 
-    $sql = "INSERT INTO tbl_products(product_id,product_name,cat_id,sub_id,price,stock,`weight`,details) VALUES(?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO tbl_products(product_id,product_name,cat_id,sub_id,price,stock,`weight`,details, short_description) VALUES(?,?,?,?,?,?,?,?,?)";
     // Initialize Database Connection
     $stmt = mysqli_stmt_init($connectDB);
     // Prepare SQL statement
     mysqli_stmt_prepare($stmt, $sql);
     // Bind parameters to the placeholder
-    mysqli_stmt_bind_param($stmt, "ssssssss", $pid, $title, $cat, $sub, $price, $stock, $weight, $details);
+    mysqli_stmt_bind_param($stmt, "sssssssss", $pid, $title, $cat, $sub, $price, $stock, $weight, $details, $shortDescription);
     // Execute statement
     if (mysqli_stmt_execute($stmt)) {
         $title = ucwords($title);
@@ -54,6 +57,7 @@ if (isset($_POST['newProduct'])) {
     $rand = substr($rand, 3, 13) . '-' . substr($rand, 15, 20);
     $pid = $_POST['pid'];
     $file = $_FILES['file'];
+    $alt_text = $_POST['alt_text']; // Get alt text from form
 
     $sql = "SELECT * FROM product_image WHERE product_id = '$pid'";
     $query = mysqli_query($connectDB, $sql);
@@ -86,13 +90,13 @@ if (isset($_POST['newProduct'])) {
                     $move = move_uploaded_file($fileTempLoc, $location . $fileNewName);
                     if ($move) {
 
-                        $sql = "INSERT INTO product_image(product_id,product_image) VALUES(?,?)";
+                        $sql = "INSERT INTO product_image(product_id,product_image, alt_text) VALUES(?,?,?)";
                         // Initialize Database Connection
                         $stmt = mysqli_stmt_init($connectDB);
                         // Prepare SQL statement
                         mysqli_stmt_prepare($stmt, $sql);
                         // Bind parameters to the placeholder
-                        mysqli_stmt_bind_param($stmt, "ss", $pid, $fileNewName);
+                        mysqli_stmt_bind_param($stmt, "sss", $pid, $fileNewName, $alt_text);
                         // Execute statement
                         if (mysqli_stmt_execute($stmt)) {
                             $_SESSION['successmessage'] =  "Image added successfully";
@@ -127,6 +131,8 @@ if (isset($_POST['newProduct'])) {
     $stock = $_POST['stock'];
     $weight = $_POST['weight'];
     $details = addslashes($_POST['details']);
+    $shortDescription = $_POST['short_description'];
+
 
     function updateDetails($check, $connnection, $column, $value, $id)
     {
@@ -153,6 +159,8 @@ if (isset($_POST['newProduct'])) {
     updateDetails($stock, $connectDB, 'stock', $stock, $pid);
     // Weight
     updateDetails($weight, $connectDB, 'weight', $weight, $pid);
+    // Details
+    updateDetails($shortDescription, $connectDB, 'short_description', $shortDescription, $pid);
     // Details
     updateDetails($details, $connectDB, 'details', $details, $pid);
     // Category and Sub-Category
